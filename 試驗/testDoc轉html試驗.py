@@ -9,6 +9,6 @@ class doc轉html試驗(TestCase):
         return join(dirname(abspath(__file__)), '檔案', 檔名)
 
     def test_有table(self):
-        html = 轉換doc.doc轉html(self.檔案('57-火燒紅蓮寺歌.doc'))
+        html = 轉換doc(self.檔案('57-火燒紅蓮寺歌.doc')).doc轉html().提html()
         self.assertIn('<table', html)
         self.assertIn('</table>', html)

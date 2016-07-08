@@ -12,5 +12,6 @@ wvWare 57-火燒紅蓮寺歌.doc
 virtualenv --python python3 venv
 source venv/bin/activate
 pip install --upgrade pip
+pip install beautifulsoup4 lxml
 python -m unittest
 ```
