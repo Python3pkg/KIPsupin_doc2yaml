@@ -1,0 +1,21 @@
+sudo: false
+language: python
+python:
+- '3.4'
+- '3.5'
+env:
+- TSI2_LING7='python -m unittest'
+- TSI2_LING7='flake8 . --exclude=venv --count --show-source --ignore=E501'
+install:
+- pip install beautifulsoup4 lxml
+branches:
+  only:
+  - master
+  - /\d+\.\d+\.\d+/
+script:
+- echo $TSI2_LING7
+- $TSI2_LING7
+after_success:
+- coverage report
+- coveralls
+
