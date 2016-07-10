@@ -12,3 +12,12 @@ class doc轉html試驗(TestCase):
         html = 轉換doc(self.檔案('57-火燒紅蓮寺歌.doc')).doc轉html().提html()
         self.assertIn('<table', html)
         self.assertIn('</table>', html)
+
+    def test_真平11(self):
+        html = (
+            轉換doc(self.檔案('真平11.doc'))
+            .doc轉html()
+        )
+        self.assertIn('<table', html)
+        self.assertIn('</table>', html)
+

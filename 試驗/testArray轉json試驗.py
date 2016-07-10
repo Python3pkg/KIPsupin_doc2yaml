@@ -38,3 +38,11 @@ class array轉json試驗(TestCase):
             .提json()
         )
         self.assertEqual(len(json['資料']), 5)
+
+    def test_安可8有段無寫著(self):
+        json = (
+            轉換doc(self.檔案('安可8.doc'))
+            .doc轉html().html轉array().array轉json()
+            .提json()
+        )
+        self.assertEqual(len(json['資料']), 7)
