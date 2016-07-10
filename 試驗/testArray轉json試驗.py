@@ -46,3 +46,13 @@ class array轉json試驗(TestCase):
             .提json()
         )
         self.assertEqual(len(json['資料']), 7)
+
+    def test_朗讀的篇名後壁有作者(self):
+        json = (
+            轉換doc(self.檔案('pt.2007.朗讀01.doc'))
+            .doc轉html().html轉array().array轉json()
+            .提json()
+        )
+        self.assertNotIn('作者', json['資料'])
+        self.assertIn('作者', json['資料'][0])
+        self.assertIn('作者', json['資料'][-1])
