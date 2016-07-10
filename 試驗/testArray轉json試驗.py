@@ -77,3 +77,15 @@ class array轉json試驗(TestCase):
             .doc轉html().html轉array().array轉json()
             .提json()
         )
+
+    def test_歌謠有濟篇的作者佮文類佇篇名前(self):
+        json = (
+            轉換doc(self.檔案('koaiau-131_140.doc'))
+            .doc轉html().html轉array().array轉json()
+            .提json()
+        )
+        self.assertEqual(len(json), 1)
+        self.assertEqual(len(json['資料']), 10)
+        self.assertNotIn('文類', json['資料'])
+        self.assertIn('文類', json['資料'][0])
+        self.assertIn('文類', json['資料'][-1])

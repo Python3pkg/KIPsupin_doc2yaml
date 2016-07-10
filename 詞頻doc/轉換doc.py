@@ -39,9 +39,13 @@ class 轉換doc:
         這馬篇 = None
         for 一逝 in self.array:
             if 一逝[0] == '篇名':
-                if 這馬篇 is not None:
+                if 這馬篇 is None:
+                    這馬篇 = {'篇名': 一逝[1], '段': []}
+                elif 這馬篇 is not None and '篇名' in 這馬篇:
                     全部資料['資料'].append(這馬篇)
-                這馬篇 = {'篇名': 一逝[1], '段': []}
+                    這馬篇 = {'篇名': 一逝[1], '段': []}
+                elif 這馬篇 is not None and '篇名' not in 這馬篇:
+                    這馬篇[一逝[0]] = 一逝[1]
             elif 一逝[0] == '段' or (一逝[0] == '' and len(一逝) == 3):
                 try:
                     這馬篇['段'].append((一逝[1], 一逝[2]))
@@ -62,8 +66,23 @@ class 轉換doc:
                 這馬篇['作者'] = 一逝[1]
             else:
                 if 這馬篇 is not None:
-                    raise RuntimeError('無應該閣出現別的資訊：{}'.format(一逝[0]))
-                全部資料[一逝[0]] = 一逝[1]
+                    if len(全部資料) == 1:
+                        if 一逝[0] in 這馬篇:
+                            全部資料['資料'].append(這馬篇)
+                            這馬篇 = {'段': []}
+                        這馬篇[一逝[0]] = 一逝[1]
+                    else:
+                        if len(全部資料['資料']) > 0:
+                            raise RuntimeError('無應該閣出現別的資訊：{}'.format(一逝[0]))
+                        if len(這馬篇['段']) == 0:
+                            這馬篇[一逝[0]] = 一逝[1]
+                        else:
+                            全部資料.pop('資料')
+                            這馬篇.update(全部資料)
+                            全部資料 = {'資料': [這馬篇]}
+                            這馬篇 = {一逝[0]: 一逝[1], '段': []}
+                else:
+                    全部資料[一逝[0]] = 一逝[1]
         if 這馬篇 is not None:
             全部資料['資料'].append(這馬篇)
         self.json = 全部資料
