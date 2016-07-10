@@ -64,11 +64,12 @@ class array轉json試驗(TestCase):
         )
 
     def test_金門國小五年級(self):
-        (
+        json = (
             轉換doc(self.檔案('金門國小五年級.doc'))
             .doc轉html().html轉array().array轉json()
             .提json()
         )
+        self.assertEqual(len(json['資料']), 18)
 
     def test_2004平溪相褒歌(self):
         (
