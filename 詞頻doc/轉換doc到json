@@ -9,15 +9,20 @@ from 詞頻doc.轉換doc import 轉換doc
 def 轉規个資料夾(來源, 目標):
     makedirs(目標, exist_ok=True)
     for 檔名 in listdir(來源):
-        檔案 = 檔名
-        if isdir(join(來源, 檔名)):
-            轉規个資料夾(join(來源, 檔名), join(目標, 檔名))
+        來源檔案 = join(來源, 檔名)
+        目檔檔案 = join(目標, 檔名)
+        if isdir(來源檔案):
+            轉規个資料夾(來源檔案, 目檔檔案)
         else:
-            with open(檔案, 'w') as 寫檔:
-                print(
-                    轉換doc(檔案).doc轉html().html轉array().array轉json().提json(),
-                    file=寫檔
-                )
+            with open(目檔檔案, 'w') as 寫檔:
+                try:
+                    print(
+                        轉換doc(
+                            來源檔案).doc轉html().html轉array().array轉json().提json(),
+                        file=寫檔
+                    )
+                except Exception as 錯誤:
+                    print(來源檔案,錯誤)
 
 if __name__ == '__main__':
     if len(argv) != 3:
