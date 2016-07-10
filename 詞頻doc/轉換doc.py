@@ -38,6 +38,7 @@ class 轉換doc:
         全部資料 = {'資料': []}
         這馬篇 = None
         for 一逝 in self.array:
+            #             print(一逝)
             if 一逝[0] == '篇名':
                 if 這馬篇 is not None:
                     全部資料['資料'].append(這馬篇)
@@ -45,12 +46,13 @@ class 轉換doc:
                 這馬篇 = {'篇名': 一逝[1], '段': []}
             elif 一逝[0] == '段' or (一逝[0] == '' and len(一逝) == 3):
                 這馬篇['段'].append((一逝[1], 一逝[2]))
+            elif 一逝[0] == '4' and len(一逝) == 3:  # 1993大家來說台灣母語
+                這馬篇['段'].append((一逝[1], 一逝[2]))
             elif 一逝[0] == '作者' and 這馬篇 is not None:
                 這馬篇['作者'] = 一逝[1]
             else:
                 if 這馬篇 is not None:
-                    全部資料['資料'].append(這馬篇)
-                    這馬篇 = None
+                    raise RuntimeError('無應該閣出現別的資訊：{}'.format(一逝[0]))
                 全部資料[一逝[0]] = 一逝[1]
         if 這馬篇 is not None:
             全部資料['資料'].append(這馬篇)

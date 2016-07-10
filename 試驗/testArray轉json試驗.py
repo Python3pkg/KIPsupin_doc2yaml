@@ -56,3 +56,23 @@ class array轉json試驗(TestCase):
         self.assertNotIn('作者', json['資料'])
         self.assertIn('作者', json['資料'][0])
         self.assertIn('作者', json['資料'][-1])
+
+    def test_1993大家來說台灣母語(self):
+        (
+            轉換doc(self.檔案('1993大家來說台灣母語.doc'))
+            .doc轉html().html轉array().array轉json()
+        )
+
+    def test_金門國小五年級(self):
+        (
+            轉換doc(self.檔案('金門國小五年級.doc'))
+            .doc轉html().html轉array().array轉json()
+            .提json()
+        )
+
+    def test_2004平溪相褒歌(self):
+        (
+            轉換doc(self.檔案('2004平溪相褒歌.doc'))
+            .doc轉html().html轉array().array轉json()
+            .提json()
+        )
