@@ -16,7 +16,7 @@ class doc轉html試驗(TestCase):
     def test_真平11(self):
         html = (
             轉換doc(self.檔案('真平11.doc'))
-            .doc轉html()
+            .doc轉html().提html()
         )
         self.assertIn('<table', html)
         self.assertIn('</table>', html)

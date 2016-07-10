@@ -19,7 +19,7 @@ class 轉換doc:
     def doc轉html(self):
         程序 = Popen(['wvWare', self.檔名], stdin=None, stdout=PIPE, stderr=PIPE)
         輸出資訊, _錯誤輸出資訊 = 程序.communicate()
-        self.html = 輸出資訊.decode('utf-8')
+        self.html = 輸出資訊.decode('utf-8', errors="replace")
         return self
 
     def html轉array(self):
