@@ -20,4 +20,3 @@ class doc轉html試驗(TestCase):
         )
         self.assertIn('<table', html)
         self.assertIn('</table>', html)
-
