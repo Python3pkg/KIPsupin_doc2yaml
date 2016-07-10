@@ -1,4 +1,3 @@
-#!python
 from subprocess import Popen, PIPE
 from bs4 import BeautifulSoup
 
@@ -55,7 +54,3 @@ class 轉換doc:
             全部資料['資料'].append(這馬篇)
         self.json = 全部資料
         return self
-
-if __name__=='__main__':
-    print('走')
-    

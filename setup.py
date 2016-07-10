@@ -36,5 +36,5 @@ setup(
         'beautifulsoup4',
         'lxml',
     ],
-      scripts=['詞頻doc/轉換doc.py']
+      scripts=['詞頻doc/轉換doc到json']
 )
