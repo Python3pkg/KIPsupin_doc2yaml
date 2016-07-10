@@ -3,7 +3,7 @@ import json
 from os import makedirs
 from os.path import isdir, join
 from posix import listdir
-from sys import argv
+from sys import argv, exit
 from 詞頻doc.轉換doc import 轉換doc
 
 
@@ -33,7 +33,9 @@ def 轉規个資料夾(來源, 目標):
 
 if __name__ == '__main__':
     if len(argv) != 3:
-        print('{} doc的資料夾 json的資料夾'.format(argv[0]))
+        print('{} <doc的資料夾> <json的資料夾>'.format(argv[0]))
+        exit(1)
     if not isdir(argv[1]):
         print('參數愛是資料夾')
+        exit(1)
     轉規个資料夾(argv[1], argv[2])
