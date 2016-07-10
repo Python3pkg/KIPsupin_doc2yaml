@@ -3,6 +3,9 @@
 參考允言老師主機[ip093](https://github.com/Taiwanese-Corpus/Ungian_Tsu2-ki1#ip093)的程式`/home/luibenghan/src/kip/ke-si/doc2db`使用`wvWare`來轉`doc`
 ```
 sudo apt-get install -y wv g++ libxml2-dev libxslt1-dev python3-dev
+virtualenv --python python3 venv
+source venv/bin/activate
+pip install --upgrade pip
 pip install KIPsupin_doc2yaml
 轉換doc到json <doc的資料夾> <json的資料夾>
 ```
@@ -14,9 +17,9 @@ pip install KIPsupin_doc2yaml
 
 ## 轉換了json格式
 
-* 頭前的`出版年`、`文類`、…看語料才知影有抑無
+* 頭前的`出版年`、`文類`、…，看語料才知影有抑無
 * 一定有`資料`
-* `資料`內底一定有`段`，無一定有`作者`
+* `資料`內底一定有`段`，無一定有`作者`、`文類`，`出版年`、…。看語料有照逐筆資料提供無
 
 ```
 {
