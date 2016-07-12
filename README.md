@@ -1,5 +1,8 @@
 # 教育部臺灣閩南語字詞頻調查工作資料轉換工具
 
+[![Build Status](https://travis-ci.org/sih4sing5hong5/KIPsupin_doc2yaml.svg?branch=master)](https://travis-ci.org/sih4sing5hong5/KIPsupin_doc2yaml)
+[![Coverage Status](https://coveralls.io/repos/github/sih4sing5hong5/KIPsupin_doc2yaml/badge.svg?branch=master)](https://coveralls.io/github/sih4sing5hong5/KIPsupin_doc2yaml?branch=master)
+
 參考允言老師主機[ip093](https://github.com/Taiwanese-Corpus/Ungian_Tsu2-ki1#ip093)的程式`/home/luibenghan/src/kip/ke-si/doc2db`使用`wvWare`來轉`doc`
 ```
 sudo apt-get install -y wv g++ libxml2-dev libxslt1-dev python3-dev
