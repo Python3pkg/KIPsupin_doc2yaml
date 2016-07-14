@@ -5,25 +5,39 @@ from os.path import join
 
 
 def 揣規个資料夾(來源):
-    全部名 = set()
+    全部資料 = []
     for 所在, _資料夾, 檔名陣列 in walk(來源):
         for 檔名 in 檔名陣列:
             來源檔案 = join(所在, 檔名)
             with open(來源檔案) as 檔:
                 資料 = json.load(檔)
-            for k in 資料.keys():
-                全部名.add(k)
-            for s in 資料['資料']:
-                for k in s.keys():
-                    全部名.add(k)
-                if len(s['段']) == 0:
-                    print(來源檔案)
-#                 全部名.add(str(len(s['段'].split())))
-    print(sorted(全部名))
+            來源屬性 = {}
+            for 欄位, 內容 in 資料.items():
+                if 欄位 != '資料':
+                    來源屬性[欄位] = 內容
+            for 篇 in 資料['資料']:
+                篇來源屬性 = {}
+                for 欄位, 內容 in 篇.items():
+                    if 欄位 != '段':
+                        篇來源屬性[欄位] = 內容
+                篇來源屬性.update(來源屬性)
+#                 if len(s['段']) == 0:
+#                     print(來源檔案)
+                for 漢字, 白話字 in 篇['段']:
+                    段資料 = {'來源': 篇來源屬性}
+                    段資料['文本資料'] = 漢字
+                    段資料['屬性'] = {'音標': 白話字}
+                    全部資料.append(段資料)
+#     print((json.dumps(全部資料,ensure_ascii=False,indent=2,sort_keys=True)))
+#     print(len(json.dumps(全部資料,indent=2,sort_keys=True)))
+    return 全部資料
 
 if __name__ == '__main__':
-    #     資料=揣規个資料夾('JSON格式資料')
-    資料 = 揣規个資料夾('/home/Ihc/git/Ungian_2011_KIPsupin/JSON格式資料')
-    資料 = 揣規个資料夾('/home/Ihc/git/kok4hau7-kho3pun2/JSON格式資料')
-    資料 = 揣規个資料夾(
-        '/home/Ihc/git/Pakhelke-1916_KoTan-1975_hiantaiekpun-2008_tailwanese-bible/JSON格式資料')
+    with open('yaml資料.json','w') as 檔案:
+#         資料=揣規个資料夾('JSON格式資料')
+        資料 = 揣規个資料夾('/home/Ihc/git/Ungian_2011_KIPsupin/JSON格式資料')
+#         資料 = 揣規个資料夾('/home/Ihc/git/kok4hau7-kho3pun2/JSON格式資料')
+#         資料 = 揣規个資料夾(
+#             '/home/Ihc/git/Pakhelke-1916_KoTan-1975_hiantaiekpun-2008_tailwanese-bible/JSON格式資料'
+#         )
+        json.dump(資料,檔案,ensure_ascii=False,indent=2,sort_keys=True)
