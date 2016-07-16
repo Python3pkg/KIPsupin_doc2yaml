@@ -1,16 +1,7 @@
 # -*- coding: utf-8 -*-
 from distutils.core import setup
-import sys
 
-
-# tar無法度下傷長的檔案名，所以愛用zip
-# python setup.py sdist --format=zip upload
-try:
-    # travis攏先`python setup.py sdist`才閣上傳
-    sys.argv.insert(sys.argv.index('sdist') + 1, '--format=zip')
-except ValueError:
-    # 無upload
-    pass
+# python setup.py sdist upload
 
 setup(
     name='KIPsupin_doc2yaml',
@@ -37,5 +28,5 @@ setup(
         'lxml',
         'pyyaml',
     ],
-    scripts=['詞頻doc/轉換doc到json','詞頻doc/全部json敆做yaml'],
+    scripts=['詞頻doc/轉換doc到json', '詞頻doc/全部json敆做yaml'],
 )
