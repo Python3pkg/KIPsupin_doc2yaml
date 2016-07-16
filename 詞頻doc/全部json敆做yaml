@@ -67,7 +67,7 @@ if __name__ == '__main__':
             '著作年': '1916/1975/2008',
             '著作所在地': '臺灣',
         }
+    下層資料 = 揣規个資料夾('JSON格式資料')
+    資料['下層'] = 下層資料
     with open('yaml資料.json', 'w') as 檔案:
-        下層資料 = 揣規个資料夾('JSON格式資料')
-        資料['下層'] = 下層資料
-    json.dump(資料, 檔案, ensure_ascii=False, indent=2, sort_keys=True)
+        json.dump(資料, 檔案, ensure_ascii=False, indent=2, sort_keys=True)
