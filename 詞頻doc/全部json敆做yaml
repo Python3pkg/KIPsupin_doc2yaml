@@ -37,7 +37,9 @@ def 揣規个資料夾(專案名, 來源):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='共全部的json敆做資料庫用的json')
     parser.add_argument(
-        '專案名', choices=['教育部臺灣閩南語字詞頻調查工作', '臺語國校仔課本', '新約聖經語料']
+        '專案名',
+        choices=['教育部臺灣閩南語字詞頻調查工作', '臺語國校仔課本', '新約聖經語料'],
+        help='欲處理佗一个專案，需要設定欄位資料'
     )
     args = parser.parse_args()
 
