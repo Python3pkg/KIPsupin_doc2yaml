@@ -15,7 +15,7 @@ except ValueError:
 setup(
     name='KIPsupin_doc2yaml',
     packages=['詞頻doc'],
-    version='0.0.1',
+    version='0.0.2',
     description=' 教育部臺灣閩南語字詞頻調查工作資料轉換工具',
     author='薛丞宏',
     author_email='ihcaoe@gmail.com',

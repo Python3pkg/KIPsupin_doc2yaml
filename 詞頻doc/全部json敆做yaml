@@ -2,6 +2,7 @@
 import json
 from os import walk
 from os.path import join
+import argparse
 
 
 def 揣規个資料夾(來源):
@@ -33,11 +34,40 @@ def 揣規个資料夾(來源):
     return 全部資料
 
 if __name__ == '__main__':
-    with open('yaml資料.json','w') as 檔案:
-#         資料=揣規个資料夾('JSON格式資料')
-        資料 = 揣規个資料夾('/home/Ihc/git/Ungian_2011_KIPsupin/JSON格式資料')
-#         資料 = 揣規个資料夾('/home/Ihc/git/kok4hau7-kho3pun2/JSON格式資料')
-#         資料 = 揣規个資料夾(
-#             '/home/Ihc/git/Pakhelke-1916_KoTan-1975_hiantaiekpun-2008_tailwanese-bible/JSON格式資料'
-#         )
-        json.dump(資料,檔案,ensure_ascii=False,indent=2,sort_keys=True)
+    parser = argparse.ArgumentParser(description='共全部的json敆做資料庫用的json')
+    parser.add_argument(
+        '專案名', choices=['教育部臺灣閩南語字詞頻調查工作', '臺語國校仔課本', '新約聖經語料']
+    )
+    args = parser.parse_args()
+
+    if args.專案名 == '教育部臺灣閩南語字詞頻調查工作':
+        資料 = {
+            '收錄者': {'名': '系統管理員'},
+            '版權': '會使公開',
+            '種類': '語句',
+            '語言腔口': '閩南語',
+            '著作年': '2009',
+            '著作所在地': '臺灣',
+        }
+    elif args.專案名 == '臺語國校仔課本':
+        資料 = {
+            '收錄者': {'名': '系統管理員'},
+            '版權': '會使公開',
+            '種類': '語句',
+            '語言腔口': '閩南語',
+            '著作年': '200x',
+            '著作所在地': '臺灣',
+        }
+    elif args.專案名 == '新約聖經語料':
+        資料 = {
+            '收錄者': {'名': '系統管理員'},
+            '版權': '會使公開',
+            '種類': '語句',
+            '語言腔口': '閩南語',
+            '著作年': '1916/1975/2008',
+            '著作所在地': '臺灣',
+        }
+    with open('yaml資料.json', 'w') as 檔案:
+        下層資料 = 揣規个資料夾('JSON格式資料')
+        資料['下層'] = 下層資料
+    json.dump(資料, 檔案, ensure_ascii=False, indent=2, sort_keys=True)
